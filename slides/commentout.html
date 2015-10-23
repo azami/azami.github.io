@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>debugging comment out</title>
+    <meta name="description" content="python tips - debbuging comment out">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/solarized.css" id="theme" />
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  <div class="reveal">
+  <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section>
+        <h2>🍶debugging comment out🍶<h2>
+        <h3>コメントアウト術</h3>
+        <p>
+          <small><a href="http://twitter.com/4d414b49">@4d414b49</a></small>
+        </p>
+      </section>
+
+      <section>
+        <img src="https://secure.gravatar.com/avatar/2fe3d91acaf0af57f85886a5f2f7d205?size=250px" alt="me" />
+        <dl>
+          <dt>なまえ</dt>
+          <dd>4d414b49(maki)</dd>
+          <dt>Python歴</dt>
+          <dd>かれこれ4年ぐらい仕事でつかってる</dd>
+          <dt>備考</dt>
+          <dd>openな活動はしていないひきこもり</dd>
+        </dl>
+      </section>
+
+      <section>
+        <section>
+          <h2>実行したくないコードをコメントアウトする</h2>
+          <ul>
+            <li class="fragment">バグさがしのため</li>
+            <li class="fragment">開発中動いてほしくない処理をしないため</li>
+            <li class="fragment">etc...</li>
+          </ul>
+        </section>
+      </section>
+
+      <section data-markdown>
+        <script type="text/template">
+## 1行
+
+```python
+    # something_do()
+```
+       </script>
+     </section>
+
+     <section data-markdown>
+       <script type="text/template">
+## 複数行
+
+```python
+    # uwaaa = taro.scream()
+    # uheee = hanako.cry()
+    # if saburo.is_happy:
+    #    something_do()
+```
+       </script>
+     </section>
+
+     <section>
+       <h2>処理を途中からやめる</h2>
+       <section data-markdown>
+         <script type="text/template">
+```python
+    def to_misfortune(self, taro, hanako):
+        taro.die()
+    #     uwaaa = hanako.scream()
+    #     uheee = hanako.cry()
+    #     if self.saburo.is_happy:
+    #        self.something_do()
+```
+         </script>
+       </section>
+       <section>
+         (ヾﾉ･∀･`)ﾅｲﾅｲ        
+       </section>
+       <section data-markdown>
+         <script type="text/template">
+```python
+    def to_misfortune(self, taro, hanako):
+        taro.die()
+        return  # debug
+        uwaaa = hanako.scream()
+        uheee = hanako.cry()
+        if self.saburo.is_happy:
+           self.something_do()
+```
+         </script>
+       </section>
+     </section>
+
+     <section>
+       <h2>長い長いコード</h2>
+       <section data-markdown>
+         <script type="text/template">
+```python
+class TestSomething(object):
+    def setup(self):
+        params = {'foo': 'foo',
+                  'bar': ['b', 'a', 'a'],
+                  'baz': 'baz'}
+        self.setup_fixture(**params)
+
+    def teardown(self):
+        self.truncate_tables()
+        self.clear_all()
+
+    def truncate_tables(self):
+        pass
+
+    def clear_all(self):
+        pass
+
+    def test_piyo(self):
+        piyo1 = Piyo()
+        assert piyo1.id == 1
+        assert piyo1.sex == 'male'
+        assert piyo1.cry() == 'pppiyo'
+        assert piyo1.tweet() == ''
+        piyo2 = Piyo()
+        assert piyo1.id == 2
+        assert piyo1.sex == 'unknown'
+        assert piyo1.cry() == 'aaaaaaa'
+        assert piyo1.tweet() == u'ぃょぅ'
+
+    def test_piyopiyo(self):
+        do_something()
+
+    def test_piyopiyopiyo(self):
+        do_something()
+
+
+class TestWrong(object):
+    def test_something_wrong(self):
+        apple = Apple()
+        person = Person('haraheri')
+        assert person.eat(apple) == 'sweeeet'
+```
+         </script>
+       </section>
+       <section data-markdown>
+         <script type="text/template">
+```python
+#class TestSomething(object):
+#    def setup(self):
+#        params = {'foo': 'foo',
+#                  'bar': ['b', 'a', 'a'],
+#                  'baz': 'baz'}
+#        self.setup_fixture(**params)
+#
+#    def teardown(self):
+#        self.truncate_tables()
+#        self.clear_all()
+#
+#    def truncate_tables(self):
+#        pass
+#
+#    def clear_all(self):
+#        pass
+#
+#    def test_piyo(self):
+#        piyo1 = Piyo()
+#        assert piyo1.id == 1
+#        assert piyo1.sex == 'male'
+#        assert piyo1.cry() == 'pppiyo'
+#        assert piyo1.tweet() == ''
+#        piyo2 = Piyo()
+#        assert piyo1.id == 2
+#        assert piyo1.sex == 'unknown'
+#        assert piyo1.cry() == 'aaaaaaa'
+#        assert piyo1.tweet() == u'ぃょぅ'
+#    def test_piyopiyo(self):
+#        do_something()
+#
+#    def test_piyopiyopiyo(self):
+#        do_something()
+
+
+class TestWrong(object):
+    def test_something_wrong(self):
+        apple = Apple()
+        person = Person('haraheri')
+        assert person.eat(apple) == 'sweeeet'
+```
+         </script>
+       </section>
+       <section data-markdown>
+         <script type="text/template">
+```python
+class TestSomething(object):
+    def setup(self):
+        params = {'foo': 'foo',
+                  'bar': ['b', 'a', 'a'],
+                  'baz': 'baz'}
+        self.setup_fixture(**params)
+
+    def teardown(self):
+        self.truncate_tables()
+        self.clear_all()
+
+    def truncate_tables(self):
+        pass
+
+    def clear_all(self):
+        pass
+
+    def test_piyo(self):
+        return  # debug
+        piyo1 = Piyo()
+        assert piyo1.id == 1
+        assert piyo1.sex == 'male'
+        assert piyo1.cry() == 'pppiyo'
+        assert piyo1.tweet() == ''
+        piyo2 = Piyo()
+        assert piyo1.id == 2
+        assert piyo1.sex == 'unknown'
+        assert piyo1.cry() == 'aaaaaaa'
+        assert piyo1.tweet() == u'ぃょぅ'
+
+    def test_piyopiyo(self):
+        return  # debug
+        do_something()
+
+    def test_piyopiyopiyo(self):
+        return  # debug
+        do_something()
+
+
+class TestWrong(object):
+    def test_something_wrong(self):
+        apple = Apple()
+        person = Person('haraheri')
+        assert person.eat(apple) == 'sweeeet'
+```
+         </script>
+       </section>
+       <section>
+         (ヾﾉ･∀･`)ﾅｲﾅｲ        
+       </section>
+       <section data-markdown>
+         <script type="text/template">
+```python
+'''
+class TestSomething(object):
+    def setup(self):
+        params = {'foo': 'foo',
+                  'bar': ['b', 'a', 'a'],
+                  'baz': 'baz'}
+        self.setup_fixture(**params)
+
+    def teardown(self):
+        self.truncate_tables()
+        self.clear_all()
+
+    def truncate_tables(self):
+        pass
+
+    def clear_all(self):
+        pass
+
+    def test_piyo(self):
+        return  # debug
+        piyo1 = Piyo()
+        assert piyo1.id == 1
+        assert piyo1.sex == 'male'
+        assert piyo1.cry() == 'pppiyo'
+        assert piyo1.tweet() == ''
+        piyo2 = Piyo()
+        assert piyo1.id == 2
+        assert piyo1.sex == 'unknown'
+        assert piyo1.cry() == 'aaaaaaa'
+        assert piyo1.tweet() == u'ぃょぅ'
+
+    def test_piyopiyo(self):
+        return  # debug
+        do_something()
+
+    def test_piyopiyopiyo(self):
+        return  # debug
+        do_something()
+'''
+
+class TestWrong(object):
+    def test_something_wrong(self):
+        apple = Apple()
+        person = Person('haraheri')
+        assert person.eat(apple) == 'sweeeet'
+```
+         </script>
+       </section>
+     </section>
+
+<section style="text-align: left;">
+<p>おすすめコメントアウト術あれば教えてください</p>
+<h1>THE END</h1>
+</section>
+
+<pre style="display:none"><code>
+</code></pre>
+
+</div>
+</div>
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+<script>
+
+// Full list of configuration options available at:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
+center: true,
+
+transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+// Optional reveal.js plugins
+dependencies: [
+{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+{ src: 'plugin/zoom-js/zoom.js', async: true },
+{ src: 'plugin/notes/notes.js', async: true }
+]
+});
+
+</script>
+</body>
+</html>
