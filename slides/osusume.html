@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="python tips - debbuging comment out">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
+
+    <link rel="stylesheet" href="reveal.js/css/reveal.css" />
+    <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme" />
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <style>
+body {
+    font-family: 'Droid Sans', sans-serif;
+}
+.reveal p, .reveal dt {
+    color: #444;
+}
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  <div class="reveal">
+  <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section>
+        <h1>買ってよかったものリスト</h1>
+        <p>
+          @maki 2016.08.18
+        </p>
+      </section>
+
+      <section>
+        <img src="https://secure.gravatar.com/avatar/2fe3d91acaf0af57f85886a5f2f7d205?size=250px" alt="me" />
+        <dl>
+          <dt>なまえ</dt>
+          <dd>@maki</dd>
+          <dt>好きなこと</dt>
+          <dd>食べること/寝ること</dd>
+          <dt>悩み</dt>
+          <dd>体重/金欠</dd>
+        </dl>
+      </section>
+
+      <section>
+        <h2>主旨</h2>
+        <h3 class="fragment">ねだんの安いもの順に</h3>
+        <h3 class="fragment">買ってよかったものを</h3>
+        <h3 class="fragment">紹介していく</h3>
+        </ul>
+      </section>
+
+      <section>
+        <h3>まぜ卵</h3>
+        <section>
+          <h4>当時300円ぐらいで買った</h4>
+          <img src="http://www.kodawari-lab.com/site/kawashima/mazeran/img/mazeran_350.jpg" />
+        </section>
+        <section>
+          <h5>空気を含まず白身と黄身をいいかんじに混ぜられる</h5>
+          <img src="http://www.kodawari-lab.com/site/kawashima/mazeran/img/mazeran_3.jpg" />
+        </section>
+        <section>
+          <table>
+            <tr>
+              <td>用途</td>
+              <td>茶碗蒸しづくり(それ以外つかわない)。卵液を漉さなくてもそれなりのものができる。</td>
+            </tr>
+            <tr>
+              <td>購入日</td>
+              <td>4年以上</td>
+            </tr>
+            <tr>
+              <td>ペイ度</td>
+              <td>たぶんPAYした</td>
+            </tr>
+            <tr>
+              <td>備考</td>
+              <td>はじめてヨドバシの通販で買ったもの</td>
+            </tr>
+          </table>
+        </section>
+      </section>
+
+      <section>
+        <h3>スープストックトーキョーのスプーン</h3>
+        <section>
+          <h4>648円で買った</h4>
+          <img style="height: 400px"src="http://www.soup-stock-tokyo.com/images/campaign/spoonforsoup/spoon.jpg" />
+        </section>
+        <section>
+          <img style="height: 600px" src="http://www.soup-stock-tokyo.com/images/campaign/spoonforsoup/1.jpg" />
+        </section>
+        <section>
+          <table>
+            <tr>
+              <td>用途</td>
+              <td>スープ専用スプーン。カレーにもよさそう(ためしてない)</td>
+            </tr>
+            <tr>
+              <td>購入日</td>
+              <td>10ヶ月ぐらい</td>
+            </tr>
+            <tr>
+              <td>ペイ度</td>
+              <td>たぶんPAYしてない</td>
+            </tr>
+            <tr>
+              <td>備考</td>
+              <td>グッドデザイン賞！ 口当たりがとてもよい。少しずつ食べられるのでダイエットによい(やせるとはいっていない)</td>
+            </tr>
+          </table>
+        </section>
+      </section>
+
+      <section>
+        <h3>袋麺レンチンでつくるやつ</h3>
+        <section>
+          <h4>1000円ぐらいで買った</h4>
+          <img style="height: 400px"src="https://images-na.ssl-images-amazon.com/images/I/41GQI-8l9cL.jpg" />
+        </section>
+        <section>
+          <table>
+            <tr>
+              <td>用途</td>
+              <td>ランチ用ラーメン製造機。　</td>
+            </tr>
+            <tr>
+              <td>購入日</td>
+              <td>2年ぐらい</td>
+            </tr>
+            <tr>
+              <td>ペイ度</td>
+              <td>たぶんPAYした</td>
+            </tr>
+            <tr>
+              <td>備考</td>
+              <td>レンジで作るラーメンはなべよりうまい。100均に類似品がある。</td>
+            </tr>
+          </table>
+        </section>
+      </section>
+
+      <section>
+        <h3>ガスバーナー</h3>
+        <section>
+          <h4>700～3000円ぐらいで買った</h4>
+          <img style="height: 400px"src="https://images-fe.ssl-images-amazon.com/images/G/09/detail/review/B00H4MO10M_03.jpg" />
+        </section>
+        <section>
+          <table>
+            <tr>
+              <td>用途</td>
+              <td>ランチ用ラーメン製造機。　</td>
+            </tr>
+            <tr>
+              <td>購入日</td>
+              <td>2年ぐらい</td>
+            </tr>
+            <tr>
+              <td>ペイ度</td>
+              <td>たぶんPAYした</td>
+            </tr>
+            <tr>
+              <td>備考</td>
+              <td>レンジで作るラーメンはなべよりうまい。100均に類似品がある。</td>
+            </tr>
+          </table>
+        </section>
+      </section>
+
+      <section>
+        <h3>バウルー</h3>
+        <section>
+          <h4>当時3000～4000円で買った。</h4>
+          <img style="height: 400px"src="http://image.rakuten.co.jp/toolandmeal/cabinet/agyou/img56575899.jpg" />
+        </section>
+        <section>
+          <h4>表面カリカリ具沢山</h4>
+          <img style="height: 400px"src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRjk6tuhjvbERglcOoTVPMCaj3e5lbgdoD7eqA7Vo2RtXrTTHVm" />
+        </section>
+        <section>
+          <h4>たべたことない人人生損している！！！</h4>
+          <img style="height: 400px"src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRRYcGYbwg0AhmD132_dExVgLK1MGbbbKoqM3x9sa6S_8U-vOZwYg" />
+        </section>
+        <section>
+          <table>
+            <tr>
+              <td>用途</td>
+              <td>ホットサンドをつくる。</td>
+            </tr>
+            <tr>
+              <td>購入日</td>
+              <td>10年以上前。ただしここ数年つくってない。</td>
+            </tr>
+            <tr>
+              <td>ペイ度</td>
+              <td>たぶんPAYした</td>
+            </tr>
+            <tr>
+              <td>備考</td>
+              <td>うまいけど太る。</td>
+            </tr>
+          </table>
+        </section>
+      </section>
+
+      <section>
+        <h3>イージースモーカー</h3>
+        <section>
+          <h4>当時7000～8000円ぐらいで買った</h4>
+          <img style="height: 400px"src="http://blogimg.goo.ne.jp/user_image/68/fe/7b513e5bdc42fe1db4e77be8e7e7d36c.jpg" />
+        </section>
+        <section>
+          <table>
+            <tr>
+              <td>用途</td>
+              <td>燻製製造機。　</td>
+            </tr>
+            <tr>
+              <td>購入日</td>
+              <td>10年ぐらい前</td>
+            </tr>
+            <tr>
+              <td>ペイ度</td>
+              <td>PAYしたか微妙</td>
+            </tr>
+            <tr>
+              <td>備考</td>
+              <td>ツヴァイヘルツのスモーカーより燻せてよい</td>
+            </tr>
+          </table>
+        </section>
+      </section>
+
+
+
+<pre style="display:none"><code>
+</code></pre>
+
+</div>
+</div>
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.js"></script>
+<script>
+
+// Full list of configuration options available at:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
+center: true,
+
+transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+// Optional reveal.js plugins
+dependencies: [
+{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+{ src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+{ src: 'reveal.js/plugin/notes/notes.js', async: true }
+]
+});
+
+</script>
+</body>
+</html>
